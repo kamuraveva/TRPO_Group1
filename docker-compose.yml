@@ -1,0 +1,27 @@
+version: "3.4"
+
+services:
+  front:
+    build: ./front
+    image: front
+    container_name: front
+    ports:
+      - "5173:5173"
+
+  back:
+    build: ./back
+    image: back
+    container_name: back
+    ports:
+      - "3001:3001"
+
+  db:
+    image: postgres:14-alpine
+    container_name: db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
+      POSTGRES_DB: Dealership
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      - "5432:5432"
